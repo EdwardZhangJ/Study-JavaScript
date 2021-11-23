@@ -2,8 +2,9 @@
 // this = 创建出来的对象
 // 这个绑定过程就是  new 绑定
 function Person(name, age) {
-  this.name = name
-  this.age = age
+    this.name = name
+    this.age = age
+    
 }
 
 var p1 = new Person( 'why', 17)

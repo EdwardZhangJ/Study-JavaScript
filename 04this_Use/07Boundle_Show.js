@@ -1,6 +1,6 @@
 // 显式绑定 第三种方法  bind
 function foo() {
-  console.log(this)
+    console.log(this)
 }
 
 var newFoo = foo.bind('aaa')

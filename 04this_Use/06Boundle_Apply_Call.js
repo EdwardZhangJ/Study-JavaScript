@@ -1,5 +1,5 @@
 function foo() {
-  console.log('函数被调用了')
+    console.log('函数被调用了')
 }
 
 // foo 直接调用 和 call/apply调用的不同在于 this 绑定的不同
