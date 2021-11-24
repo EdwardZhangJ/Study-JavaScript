@@ -57,26 +57,71 @@
 // person1.foo4.call(person2)() // person2 上层作用被显示的绑定到 person2
 // person1.foo4().call(person2) // person1 上层作用域是 person1
 
-// 面试题三
 
+// 面试题三
+// var name = "window";
+// function Person (name) {
+//     this.name = name;
+//     this.foo1 = function () { // 上层作用域为 全局 window
+//         console.log(this.name)
+//     };
+//     this.foo2 = () => console.log(this.name);
+//     this.foo3 = function () {
+//         return function () {
+//             console.log(this.name)
+//         }
+//     };
+//     this.foo4 = function () {
+//         return () => {
+//             console.log(this.name)
+//         }
+//     }
+// }
+//
+// var person1 = new Person('person1');
+// var person2 = new Person('person2');
+//
+// person1.foo1(); // person1
+// person1.foo1.call(person2); // person2 (显示绑定高于隐式)
+//
+// person1.foo2(); // person1 (上层作用域中的 this 是 person1 )
+// person1.foo2.call(person2); // person1(上层作用域 this 是 person1)
+//
+// person1.foo3()(); // window (独立函数调用)
+// person1.foo3.call(person2)(); // window (独立函数调用)
+// person1.foo3().call(person2); // person2
+//
+// person1.foo4()(); // person1 上层作用域 this 是 person1
+// person1.foo4.call(person2)(); // person2 显示绑定，上层作用域是 person2
+// person1.foo4().call(person2); // person1 箭头函数不进行绑定，上层作用仍是 person1
+
+
+// 面试题四
 var name = "window";
 function Person (name) {
     this.name = name;
-    this.foo1 = function () {
-        console.log(this.name)
-    };
-    this.foo2 = () => console.log(this.name);
-    this.foo3 = function () {
-        return function () {
-            console.log(this.name)
-        }
-    };
-    this.foo4 = function () {
-        return () => {
-            console.log(this.name)
+    this.obj = {
+        name: 'obj',
+        foo1: function () {
+            return function () {
+                console.log(this.name)
+            }
+        },
+        foo2: function () {
+            return () => {
+                console.log(this.name)
+            }
         }
     }
 }
 
 var person1 = new Person('person1');
-var person2 = new Person('person2')
+var person2 = new Person('person2');
+
+person1.obj.foo1()(); // window 独立函数调用
+person1.obj.foo1.call(person2)(); // window 独立函数调用
+person1.obj.foo1().call(person2); // person2
+
+person1.obj.foo2()(); // obj：foo2 调用时绑定的是 obj, 即在上层作用域 obj 中调用
+person1.obj.foo2.call(person2)(); // person2：foo2 return 中的箭头 绑定了 person2 之后调用
+person1.obj.foo2().call(person2); // obj：foo2 调用时绑定的是 obj
