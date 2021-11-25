@@ -19,7 +19,7 @@ Function.prototype.hycall = function(thisArg, ...args) {
     // 3. 调用需要执行的函数
     thisArg.fn = fn
     var result = thisArg.fn(...args)
-    delete thisArg
+    delete thisArg.fn
     
     // 4. 将最终结果返回出去
     return result
