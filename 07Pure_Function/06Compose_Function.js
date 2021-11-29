@@ -10,5 +10,17 @@ function double(num) {
 }
 
 function square(num) {
-    return num * num
+    return num ** 2
+}
+
+var count = 10
+var result = square(double(count))
+console.log(result)
+
+var num = 100
+
+function composeFn(m, n) {
+    return function(count) {
+        return n(m(count))
+    }
 }
