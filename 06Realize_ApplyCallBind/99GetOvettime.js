@@ -54,5 +54,7 @@ function getOvertime () {
         return "打卡时间：" + endTimeStr + getIcon(weekDay) + " 加班时长：" + (hour + minute/60).toFixed(2) + "时";
     }
 }
+
+
 let overtime = getOvertime();
 console.log(overtime)
