@@ -82,6 +82,8 @@ bar(); //
 */
 
 // ex.8 setTimeout 的 this
+// 通过 fn.apply(this = window)
 setTimeout( function() {
-    console.log(this)
+    console.log(this); // window
 }, 1000)
+
