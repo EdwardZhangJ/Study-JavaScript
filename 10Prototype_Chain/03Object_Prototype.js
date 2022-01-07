@@ -14,7 +14,7 @@ var obj = { name: 'why' };
 console.log(obj.__proto__); // [Object: null prototype] {}
 
 // obj.prototype =>  [Object: null prototype] {}
-console.log(obj.__proto__.__proto__); // null
+// console.log(obj.__proto__.__proto__); // null
 
 // 顶层原型来自哪里
 
@@ -26,3 +26,11 @@ function Person() {
 }
 
 var  p = new Person();
+
+
+// Object.prototype
+// console.log(obj1.__proto__);
+// console.log(Object.prototype);
+// console.log(Object.prototype === obj1.__proto__); // true
+
+console.log(Object.getOwnPropertyDescriptors(Object.prototype));
